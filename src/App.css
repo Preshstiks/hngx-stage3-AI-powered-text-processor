@@ -1,0 +1,69 @@
+@import "tailwindcss";
+html,
+body {
+  overflow-x: hidden;
+  height: 100%;
+}
+@font-face {
+  font-family: OxaniumBold;
+  src: url("./assets/fonts/Oxanium-Bold.ttf");
+}
+@font-face {
+  font-family: OxaniumLight;
+  src: url("./assets/fonts/Oxanium-Light.ttf");
+}
+@font-face {
+  font-family: OxaniumMedium;
+  src: url("./assets/fonts/Oxanium-Medium.ttf");
+}
+@font-face {
+  font-family: OxaniumRegular;
+  src: url("./assets/fonts/Oxanium-Regular.ttf");
+}
+@font-face {
+  font-family: OxaniumSemibold;
+  src: url("./assets/fonts/Oxanium-SemiBold.ttf");
+}
+@font-face {
+  font-family: PoppinsBold;
+  src: url("./assets/fonts/Poppins-Bold.ttf");
+}
+@font-face {
+  font-family: PoppinsThin;
+  src: url("./assets/fonts/Poppins-Thin.ttf");
+}
+@font-face {
+  font-family: PoppinsMedium;
+  src: url("./assets/fonts/Poppins-Medium.ttf");
+}
+@font-face {
+  font-family: PoppinsRegular;
+  src: url("./assets/fonts/Poppins-Regular.ttf");
+}
+@font-face {
+  font-family: PoppinsSemiBold;
+  src: url("./assets/fonts/Poppins-SemiBold.ttf");
+}
+
+@theme {
+  --color-primary: #181818;
+  --color-secondary: #0de8f8;
+  --color-lightPrimary: #373737;
+  --color-dropDownColor: #484848;
+  --breakpoint-xs: 30rem;
+  --breakpoint-sm: 40rem;
+  --breakpoint-md: 48rem;
+  --breakpoint-lg: 75rem;
+  --breakpoint-2xl: 100rem;
+  --breakpoint-3xl: 120rem;
+  --font-oxaniumBold: OxaniumBold;
+  --font-oxaniumLight: OxaniumLight;
+  --font-oxaniumMedium: OxaniumMedium;
+  --font-oxaniumRegular: OxaniumRegular;
+  --font-oxaniumSemibold: OxaniumSemibold;
+  --font-poppinsBold: PoppinsBold;
+  --font-poppinsThin: PoppinsThin;
+  --font-poppinsMedium: PoppinsMedium;
+  --font-poppinsRegular: PoppinsRegular;
+  --font-poppinsSemiBold: PoppinsSemiBold;
+}
