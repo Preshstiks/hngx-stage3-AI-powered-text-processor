@@ -6,6 +6,8 @@ import AutoDetectIndicator from "../components/AutoDetectIndicator";
 import { IoSendOutline } from "react-icons/io5";
 import { BeatLoader, ClipLoader } from "react-spinners";
 import TypingText from "../components/useTyper";
+import { Bounce, toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const Translator = () => {
   const detectorRef = useRef(null);
   const [inputText, setInputText] = useState("");
@@ -86,8 +88,20 @@ const Translator = () => {
       setTranslatedText(result);
       setDetectedLanguageResult(detectedLanguage.language);
     } catch (error) {
-      console.error("Error translating text:", error);
-      alert("Failed to translate the text. Please try again.");
+      setInputText("");
+      toast.error("Check if you're translating English to English!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        transition: Bounce,
+      });
+
+      console.error("Translation error:", error);
     } finally {
       setIsTranslating(false);
     }
@@ -217,6 +231,7 @@ const Translator = () => {
               <div className="flex justify-end">
                 <button
                   onClick={summarizeText}
+                  disabled={isDisabled || isSummarizing}
                   className={`mt-2 py-2 px-3 text-[10px] rounded-[8px] font-poppinsRegular ${
                     isDisabled
                       ? "bg-gray-400 cursor-not-allowed text-gray-200"
@@ -258,6 +273,7 @@ const Translator = () => {
           />
           <button
             onClick={handleTranslate}
+            disabled={isDisabled || isTranslating}
             className={`absolute right-2 bottom-2 py-2 px-3 text-[10px] rounded-[8px] font-poppinsRegular ${
               isDisabled
                 ? "bg-gray-400 cursor-not-allowed text-gray-200"
@@ -268,6 +284,7 @@ const Translator = () => {
           </button>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };

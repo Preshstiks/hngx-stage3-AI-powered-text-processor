@@ -119,8 +119,8 @@ const Summarizer = () => {
             </div>
             {request.loading ? (
               <div className="flex justify-end mt-3 mb-10">
-                <div className="bg-[#0de8f88e] rounded-[8px] sm:max-w-[600px] xs:max-w-[400px] max-w-[300px] w-full py-3 px-6">
-                  <BeatLoader color="#373737" size={8} />
+                <div className="bg-[#0de8f822] border border-secondary rounded-[8px] sm:max-w-[600px] xs:max-w-[400px] max-w-[300px] w-full py-3 px-6">
+                  <BeatLoader color="#fff" size={8} />
                 </div>
               </div>
             ) : request.summary ? (
