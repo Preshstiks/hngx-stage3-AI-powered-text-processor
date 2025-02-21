@@ -25,7 +25,7 @@ const TypingText = ({ text, speed = 100, showCursor = true }) => {
   const { displayedText, isTyping } = useTyper(text, speed);
 
   return (
-    <h1>
+    <h1 className="text-[13px]">
       {displayedText}
       {showCursor && isTyping && <span className="blink">|</span>}
     </h1>

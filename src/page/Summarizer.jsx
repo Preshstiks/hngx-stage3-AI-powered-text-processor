@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { BeatLoader } from "react-spinners";
 import TypingText from "../components/useTyper";
 import { PageDropDown } from "../components/DropDown";
+import { IoSendOutline } from "react-icons/io5";
 
 const Summarizer = () => {
   const detectorRef = useRef(null);
@@ -51,24 +52,10 @@ const Summarizer = () => {
     async function initializeDetector() {
       const languageDetectorCapabilities =
         await self.ai.languageDetector.capabilities();
-      const canDetect = languageDetectorCapabilities.capabilities;
 
-      if (canDetect === "no") return;
+      if (languageDetectorCapabilities.capabilities === "no") return;
 
-      let newDetector;
-      if (canDetect === "readily") {
-        newDetector = await self.ai.languageDetector.create();
-      } else {
-        newDetector = await self.ai.languageDetector.create({
-          monitor(m) {
-            m.addEventListener("downloadprogress", (e) => {
-              console.log(`Downloaded ${e.loaded} of ${e.total} bytes.`);
-            });
-          },
-        });
-        await newDetector.ready;
-      }
-
+      const newDetector = await self.ai.languageDetector.create();
       detectorRef.current = newDetector;
     }
 
@@ -126,19 +113,19 @@ const Summarizer = () => {
         </h1>
       ) : (
         requests.map((request, index) => (
-          <div key={index} className="mb-4">
-            <div className="bg-[#101010] rounded-[8px] max-w-[600px] w-full py-3 px-6">
-              <p className="font-bold">{request.text}</p>
+          <div key={index} className="mb-4 mt-10">
+            <div className="bg-lightPrimary rounded-[8px] border border-[#939393] sm:max-w-[600px] xs:max-w-[400px] max-w-[300px] w-full py-3 px-6">
+              <p className="text-[14px]">{request.text}</p>
             </div>
             {request.loading ? (
               <div className="flex justify-end mt-3 mb-10">
-                <div className="bg-[#0de8f88e] rounded-[8px] max-w-[600px] w-full py-3 px-6">
+                <div className="bg-[#0de8f88e] rounded-[8px] sm:max-w-[600px] xs:max-w-[400px] max-w-[300px] w-full py-3 px-6">
                   <BeatLoader color="#373737" size={8} />
                 </div>
               </div>
             ) : request.summary ? (
               <div className="flex justify-end mt-3 mb-10">
-                <div className="bg-[#0de8f88e] rounded-[8px] max-w-[600px] w-full py-3 px-6">
+                <div className="bg-[#0de8f822] border border-secondary rounded-[8px] sm:max-w-[600px] xs:max-w-[400px] max-w-[300px] w-full py-3 px-6">
                   <TypingText text={request.summary} speed={100} />
                 </div>
               </div>
@@ -146,7 +133,7 @@ const Summarizer = () => {
           </div>
         ))
       )}
-      <div className="fixed bottom-6 left-1/2 px-4 -translate-x-1/2 z-50 max-w-[700px] w-full">
+      <div className="fixed bottom-10 left-1/2 px-4 -translate-x-1/2 z-50 max-w-[700px] w-full">
         <div className="px-4 relative pt-4 pb-8 rounded-[10px] bg-lightPrimary max-w-[700px] w-full">
           <textarea
             value={inputText}
@@ -164,7 +151,7 @@ const Summarizer = () => {
                   : "bg-secondary cursor-pointer text-white"
               }`}
             >
-              Summarize
+              <IoSendOutline />
             </button>
           )}
           <div className="absolute left-2 bottom-2">

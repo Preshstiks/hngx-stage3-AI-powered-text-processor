@@ -9,27 +9,11 @@ export default function LanguageSelect({
   onSelect,
   enableAutoDetect = false,
 }) {
-  const [selectedLanguage, setSelectedLanguage] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
-
-  useEffect(() => {
-    if (detectedLanguage) {
-      const detectedLang = languages.find(
-        (lang) => lang.code === detectedLanguage
-      );
-      if (detectedLang) {
-        setSelectedLanguage(detectedLang);
-        return;
-      }
-    }
-
-    if (enableAutoDetect) {
-      setSelectedLanguage({ code: "auto", name: "Auto-detect" });
-    } else {
-      setSelectedLanguage(languages.length > 0 ? languages[0] : null);
-    }
-  }, [detectedLanguage, languages, enableAutoDetect]);
+  const selectedLanguage =
+    languages.find((lang) => lang.code === detectedLanguage) ||
+    (enableAutoDetect ? { code: "auto", name: "Auto-detect" } : languages[0]);
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -69,9 +53,8 @@ export default function LanguageSelect({
               key={lang.code}
               className="px-3 py-1 hover:bg-lightPrimary cursor-pointer"
               onClick={() => {
-                setSelectedLanguage(lang);
+                onSelect(lang); // Update the parent component
                 setIsOpen(false);
-                onSelect(lang);
               }}
             >
               {lang.name}
