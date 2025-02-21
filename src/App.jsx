@@ -24,7 +24,7 @@ function App() {
       <div>
         <h1 className="text-[#8f8f8f] text-[30px] pb-5">Oops!</h1>
         <p className="text-[#8f8f8f] mb-2 font-oxaniumLight">
-          It seems like this {apiname} feature is not supported on your device.
+          It seems like this {apiname} feature is not supported on your browser.
         </p>
         <p className="text-[#8f8f8f] font-oxaniumLight">
           Please try again later or contact support.
