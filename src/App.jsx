@@ -20,7 +20,7 @@ function App() {
   }, []);
 
   const OopsPage = (apiname) => (
-    <div className="h-screen flex text-center items-center justify-center">
+    <div className="h-screen px-4 flex text-center items-center justify-center">
       <div>
         <h1 className="text-[#8f8f8f] text-[30px] pb-5">Oops!</h1>
         <p className="text-[#8f8f8f] mb-2 font-oxaniumLight">
@@ -39,7 +39,6 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/oops" element={<OopsPage />} />
           <Route
             path="/ai/summarizer"
             element={
